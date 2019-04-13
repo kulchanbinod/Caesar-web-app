@@ -1,0 +1,57 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Pizzas
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <p>
+        <a href="pizzas/add" class="btn btn-primary">Add Pizza</a>
+      </p>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Pizzas</h3>
+        </div>
+        <div class="box-body">
+		          <table class="table table-bordered">
+                <tbody>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Time(mins)</th>
+                  <th>Action</th>
+                </tr>
+                {% for pizza in pizzas %}
+                <tr>
+                  <td>{{ pizza.id }}</td>
+                  <td>{{ pizza.name }}</td>
+                  <td>{{ pizza.category.name }}</td>
+                  <td>{{ pizza.price }}</td>
+                  <td>{{ pizza.time }}</td>
+                  <td>
+                    <a href="/pizzas/edit/{{ pizza.id }}" class="btn btn-primary">Edit</a>
+                    <a href="/pizzas/delete/{{ pizza.id }}" class="btn btn-danger">Delete</a>
+                  </td>
+                </tr>
+        		{% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

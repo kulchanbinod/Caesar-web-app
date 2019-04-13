@@ -1,0 +1,40 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Ingredients
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Add new Ingredient</h3>
+        </div>
+        
+        <form role="form" action="/ingredients/{{ ingredient ? 'update/' ~ ingredient.id : 'save' }}" method="post">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" value="{{ ingredient ? ingredient.name : '' }}"/>
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

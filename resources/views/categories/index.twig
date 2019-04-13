@@ -1,0 +1,51 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Categories
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <p>
+        <a href="categories/add" class="btn btn-primary">Add Category</a>
+      </p>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Categories</h3>
+        </div>
+        <div class="box-body">
+		          <table class="table table-bordered">
+                <tbody>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Title</th>
+                  <th>Action</th>
+                </tr>
+                {% for category in categories %}
+                <tr>
+                  <td>{{ category.id }}</td>
+                  <td>{{ category.name }}</td>
+                  <td>
+                    <a href="/categories/edit/{{ category.id }}" class="btn btn-primary">Edit</a>
+                    <a href="/categories/delete/{{ category.id }}" class="btn btn-danger">Delete</a>
+                  </td>
+                </tr>
+        		{% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

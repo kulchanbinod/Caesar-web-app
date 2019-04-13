@@ -1,0 +1,71 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Pizzas
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Pizzas</h3>
+        </div>
+        
+        <form role="form" action="/pizzas/{{ pizza ? 'update/' ~ pizza.id : 'save' }}" method="post" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" value="{{ pizza ? pizza.name : '' }}"/>
+                </div>
+                <div class="form-group">
+                  <label for="category">Cateory</label>
+                  <select name="category_id" id="category" class="form-control">
+                    {% for category in categories %}
+                      <option value="{{ category.id }}" {{ pizza.category.id == category.id ? 'selected' : '' }} >{{ category.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="category">Image</label>
+                  <input type="file" name="image" value=""/>
+                  {% if pizza.image != '' %}
+                    <img src="{{ pizza.image }}" alt="" style="width:100px;height:100px" />
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  <label for="price">Price</label>
+                  <input type="text" class="form-control" name="price" id="price" value="{{ pizza ? pizza.price : '' }}"/>
+                </div>
+                <div class="form-group">
+                  <label for="time">Time(mins)</label>
+                  <input type="text" class="form-control" name="time" id="time" value="{{ pizza ? pizza.time : '' }}"/>
+                </div>
+                <div class="form-group">
+                  <label for="ingredients">Ingredient</label>
+                  <select class="form-control select2" multiple="multiple" name="ingredient_id[]" data-placeholder="Select ingredients" style="width: 100%;">
+                    {% for ingredient in ingredients %}
+                    <option value="{{ ingredient.id }}" {{ pizza ? (ingredient.id in ingredient_ids) ? 'selected' : ''  : ''  }} >{{ ingredient.name }} </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}

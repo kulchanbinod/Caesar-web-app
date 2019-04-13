@@ -1,0 +1,55 @@
+{% extends "master.twig" %}
+{% block main %}
+
+	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Sides
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <p>
+        <a href="sides/add" class="btn btn-primary">Add Side</a>
+      </p>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">List of Sides</h3>
+        </div>
+        <div class="box-body">
+		          <table class="table table-bordered">
+                <tbody>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Time(mins)</th>
+                  <th>Action</th>
+                </tr>
+                {% for side in sides %}
+                <tr>
+                  <td>{{ side.id }}</td>
+                  <td>{{ side.name }}</td>
+                  <td>{{ side.price }}</td>
+                  <td>{{ side.time }}</td>
+                  <td>
+                    <a href="/sides/edit/{{ side.id }}" class="btn btn-primary">Edit</a>
+                    <a href="/sides/delete/{{ side.id }}" class="btn btn-danger">Delete</a>
+                  </td>
+                </tr>
+        		{% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="box-footer">
+          Footer
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+{% endblock %}
